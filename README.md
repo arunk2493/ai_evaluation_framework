@@ -7,3 +7,7 @@ This repository contains:
 - SQL KPI ground-truth assertion
 - Multi-agent E2E testing pipeline
 - GitHub Actions CI with Allure reporting
+
+
+
+
