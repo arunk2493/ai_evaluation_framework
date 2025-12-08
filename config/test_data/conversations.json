@@ -1,0 +1,16 @@
+{
+  "sample_flows": [
+    {
+      "user": "What were NY sales last quarter?",
+      "route": "KPI",
+      "followup": "Why did NY sales drop?",
+      "next_route": "Diagnostic"
+    },
+    {
+      "user": "Simulate 10% discount for EU electronics",
+      "route": "Simulation",
+      "followup": "Give actionable insight",
+      "next_route": "Insight"
+    }
+  ]
+}

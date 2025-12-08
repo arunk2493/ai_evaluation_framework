@@ -1,0 +1,10 @@
+{
+  "StoreManager": {
+    "can_access": ["Store KPIs", "Regional Dashboard"],
+    "cannot_access": ["Global Revenue", "CRO Insights"]
+  },
+  "CRO": {
+    "can_access": ["Global Revenue", "Executive Insights", "Store KPIs"],
+    "cannot_access": []
+  }
+}

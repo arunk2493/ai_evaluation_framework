@@ -1,0 +1,16 @@
+
+name: AI Test Framework CI
+on: [push]
+jobs:
+  tests:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - uses: actions/setup-python@v4
+        with: {python-version: '3.10'}
+      - run: pip install -r requirements.txt
+      - run: pytest --alluredir=reports/allure-results
+      - uses: actions/upload-artifact@v3
+        with:
+          name: allure-results
+          path: reports/allure-results

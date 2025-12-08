@@ -1,0 +1,8 @@
+{
+  "regions": ["US", "EU", "APAC", "LATAM"],
+  "country_map": {
+    "US": ["NY", "CA", "TX"],
+    "EU": ["UK", "DE", "FR"],
+    "APAC": ["IN", "JP", "SG"]
+  }
+}
