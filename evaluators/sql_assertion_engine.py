@@ -1,26 +1,29 @@
+import pandas as pd
+import json
+from pathlib import Path
 
-import duckdb, pandas as pd, json
+# Load sales KPI data from JSON (stored in repo under config/test_data)
+DATA_PATH = Path(__file__).resolve().parents[1] / "config" / "test_data" / "sales_kpis.json"
 
-with open("config/test_data/sales_kpis.json") as f:
+with open(DATA_PATH) as f:
     sales = json.load(f)
 
 rows = []
-for region, val in sales["sales"].items():
+for region, val in sales.get("sales", {}).items():
     rows.append({
         "region": region,
         "sales": val,
-        "growth": sales["growth"][region]
+        "growth": sales.get("growth", {}).get(region)
     })
 
+# Keep the data in-memory as a pandas DataFrame and query it directly.
 df = pd.DataFrame(rows)
-con = duckdb.connect(database=":memory:")
-con.register("df_sales", df)
-con.execute("CREATE TABLE sales_kpi AS SELECT * FROM df_sales")
 
 def query_kpi(region):
     try:
-        return con.execute(f"SELECT * FROM sales_kpi WHERE region = '{region}'").df()
-    except:
+        df_out = df[df["region"] == region].reset_index(drop=True)
+        return df_out
+    except Exception:
         return pd.DataFrame()
 
 def assert_kpi_with_output(region, llm_output):
